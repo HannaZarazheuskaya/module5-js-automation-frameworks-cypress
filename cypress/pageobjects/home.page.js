@@ -1,17 +1,24 @@
-class HomePage {
+import Page from './page.js';
 
-    get productCards() {
-        return cy.get('[data-test^="product"]');
+class HomePage extends Page {
+    constructor() {
+        super('/');
     }
 
-    //for favorites scenario
+    open() {
+        super.open();
+    }
+
+    get productCards() {
+        return cy.get('a.card[data-test^="product-"]');
+    }
+
     selectFirstProduct() {
         this.productCards.first().click();
     }
 
-    //for checkout scenario
     selectFirstProductInStock(){
-        //add check if in stock
+        this.productCards.not(':has([data-testid="out-of-stock"])').first().click();
     }
 }
 

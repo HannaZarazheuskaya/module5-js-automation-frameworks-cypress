@@ -21,7 +21,7 @@ class Header {
 
 
     goToSignIn() {
-        this.signInLink.click();
+        this.signInLink.should('be.visible').click();
     }
 
     getUserName() {
@@ -29,12 +29,12 @@ class Header {
     }
 
     openFavorites() {
-        this.userMenu.click();
+        this.userMenu.should('be.visible').click();
         this.myFavoritesLink.click();
     }
 
     openHomePage() {
-        this.homeLink.click();
+        this.homeLink.should('be.visible').click();
     }
 
     openCart() {

@@ -1,14 +1,12 @@
-class ProductDetailPage{
+import Page from "./page.js";
+
+class ProductDetailPage extends Page{
+    constructor() {
+        super('/product');
+    }
+
     get productName() {
         return cy.get('[data-test="product-name"]');
-    }
-
-    get productQuantity() {
-        return cy.get('[data-test="quantity"]');
-    }
-
-    get increaseQuantityBtn() {
-        return cy.get('[data-test="increase-quantity"]');
     }
 
     get addToCartBtn() {
@@ -19,17 +17,8 @@ class ProductDetailPage{
         return cy.get('[data-test="add-to-favorites"]');
     }
 
-
-    increaseQuantity(count) {
-        const clicksRequired = count-1;        
-        for (let i = 0; i < clicksRequired; i++) {
-            this.increaseQuantityBtn.click();
-        }
-    }
-
     addToCart() {
-        this.addToCartBtn.waitForClickable();
-        this.addToCartBtn.click();
+        this.addToCartBtn.should('be.visible').click();
     }
 
     addToFavorites() {
