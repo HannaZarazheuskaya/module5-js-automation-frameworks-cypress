@@ -8,8 +8,7 @@
 //     And the user opens the Favorites page
 //     Then the added product should be displayed on the Favorites page
 
-import { Header } from '../pageobjects/components/index.js';
-import { HomePage, LoginPage, ProductDetailPage, FavoritesPage } from '../pageobjects/index.js';
+import { HomePage, LoginPage, AccountPage, ProductDetailPage, FavoritesPage } from '../pageobjects/index.js';
 import testdata from '../fixtures/testdata.json';
 
 describe('Favorites', () => {
@@ -20,13 +19,13 @@ describe('Favorites', () => {
 
         HomePage.open();
 
-        Header.goToSignIn();
+        HomePage.header.goToSignIn();
         LoginPage.login(user.email, user.password);
-        Header.userMenu.should('be.visible');
+        AccountPage.header.userMenu.should('be.visible');
 
-        Header.openFavorites();
+        HomePage.header.openFavorites();
         FavoritesPage.resetFavorites();
-        Header.openHomePage();
+        FavoritesPage.header.openHomePage();
     });
 
     it('should add a product to customer favorites', () => {
@@ -36,7 +35,7 @@ describe('Favorites', () => {
             const expectedName = expectedProductName.trim();
 
             ProductDetailPage.addToFavorites();
-            Header.openFavorites();
+            ProductDetailPage.header.openFavorites();
 
             FavoritesPage.productName.first().invoke('text').then((actualProductName) => {
                 const actualName = actualProductName.trim();

@@ -1,9 +1,14 @@
 import Page from './page.js';
+import { Header } from "./components/index.js";
 
 class FavoritesPage extends Page {
 
     constructor() {
         super('/account/favorites');
+    }
+
+    get header() {
+        return Header;
     }
 
     get productName() {

@@ -11,9 +11,7 @@
 //     And the user confirms payment
 //     Then the order confirmation with the invoice number should be displayed 
 
-import Page from "../pageobjects/page.js";
-import { Header } from "../pageobjects/components/index.js";
-import { LoginPage, HomePage, ProductDetailPage, CheckoutPage } from "../pageobjects/index.js";
+import { LoginPage, HomePage, ProductDetailPage, CheckoutPage, AccountPage } from "../pageobjects/index.js";
 import testdata from '../fixtures/testdata.json';
 
 describe('Checkout', () => {
@@ -22,16 +20,16 @@ describe('Checkout', () => {
         const user = testdata.customer2;
 
         HomePage.open();
-        Header.goToSignIn();
+        HomePage.header.goToSignIn();
 
         LoginPage.login(user.email, user.password);
-        Header.userMenu.should('be.visible');
-        Header.openHomePage();
+        AccountPage.header.userMenu.should('be.visible');
+        AccountPage.header.openHomePage();
 
         HomePage.selectFirstProductInStock();
         
         ProductDetailPage.addToCart();
-        Header.openCart();
+        ProductDetailPage.header.openCart();
 
         CheckoutPage.proceedToCheckout();
         CheckoutPage.confirmLogIn();
@@ -45,6 +43,6 @@ describe('Checkout', () => {
         CheckoutPage.confirmPaymentMethod();
         CheckoutPage.confirmPaymentMethod();
 
-        CheckoutPage.orderConfirmationMsg.should('contain.text', 'Thanks for your order! Your invoice number is');
+        CheckoutPage.orderConfirmationMsg.should('be.visible').should('contain.text', 'Thanks for your order! Your invoice number is');
     });
 });
