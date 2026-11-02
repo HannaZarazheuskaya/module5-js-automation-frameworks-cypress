@@ -10,15 +10,16 @@ import { HomePage } from '../pageobjects/index.js';
 
 describe('Filter products', () => {
 
-    it('should filter products by category and price range', () => {
-        
+    it('should filter products by category and price range as a Guest', () => {
         HomePage.open();
-        //get Price range: 20-80;
-        //cy.get('.ngx-slider-pointer-min') // set 20
-        //cy.get('.ngx-slider-pointer-max') // set 80
-        //get 1st category checkbox
-        //cy.get(':nth-child(13) > :nth-child(2) > :nth-child(1)')
-        //expect products displayed = selected category
-        //expect products price >20 <80
+
+        const minPrice = 20;
+        const maxPrice = 80;
+        HomePage.sidebar.filterByPriceRange(minPrice, maxPrice);
+
+        HomePage.sidebar.firstCategoryCheckbox.should('exist');
+        HomePage.sidebar.checkFirstCategory();
+
+        HomePage.validatePricesFromMinToMax(minPrice, maxPrice);
     })
 })

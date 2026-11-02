@@ -40,7 +40,10 @@ describe('Checkout', () => {
 
     it('should checkout with Cash on delivery payment method', () => {
         CheckoutPage.selectPaymentMethod('cash-on-delivery');
+
         CheckoutPage.confirmPaymentMethod();
+        CheckoutPage.waitForPaymentStatus();
+
         CheckoutPage.confirmPaymentMethod();
 
         CheckoutPage.orderConfirmationMsg.should('be.visible').should('contain.text', 'Thanks for your order! Your invoice number is');

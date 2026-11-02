@@ -43,7 +43,14 @@ class CheckoutPage extends Page {
         return cy.get('#order-confirmation');
     }
 
+    get paymentStatusMsg() {
+        return cy.get('.alert, [data-test="payment-status-message"]');
+    }
 
+
+    waitForPaymentStatus() {
+        this.paymentStatusMsg.should('be.visible').should('contain.text', 'successful');
+    }
 
     proceedToCheckout() {
         this.proceedCartBtn.should('be.visible').click();

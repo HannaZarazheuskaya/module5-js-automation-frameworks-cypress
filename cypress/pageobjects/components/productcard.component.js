@@ -7,6 +7,10 @@ class ProductCard {
             return price;
         });
     }
+
+    getName(card) {
+        return cy.wrap(card).find('[data-test="product-name"]').invoke('text').then((name) => name.trim());
+    }
 }
 
 export default new ProductCard();

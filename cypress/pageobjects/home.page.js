@@ -59,6 +59,19 @@ class HomePage extends Page {
         this.allCards.not(':has([data-testid="out-of-stock"])').first().click();
     }
 
+    validatePricesFromMinToMax(min, max) {
+        this.allCards.should('have.length.greaterThan', 0).each(($card) => {
+            this.productCard.getPrice($card).then((price) => {
+                expect(price).to.be.at.least(min);
+                expect(price).to.be.at.most(max);
+            })
+            
+            this.productCard.getName($card).then((name) => {
+                expect(name).to.not.be.empty;
+            })
+        });
+    }
+
 }
 
 export default new HomePage();
