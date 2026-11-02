@@ -1,0 +1,20 @@
+{
+  "name": "module5-js-automation-frameworks-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:chrome": "cypress run --browser chrome --headless",
+    "test:firefox": "cypress run --browser firefox --headless",
+    "test:edge": "cypress run --browser edge --headless",
+    "test:all-browsers": "npm run test:chrome && npm run test:firefox && npm run test:edge"
+  },
+  "dependencies": {
+    "cypress": "^16.2.0"
+  },
+  "allowScripts": {
+    "cypress@16.2.0": true
+  }
+}
