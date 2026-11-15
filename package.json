@@ -6,15 +6,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:chrome": "cypress run --browser chrome --headless",
-    "test:firefox": "cypress run --browser firefox --headless",
-    "test:edge": "cypress run --browser edge --headless",
-    "test:all-browsers": "npm run test:chrome && npm run test:firefox && npm run test:edge"
+    "test:chrome": "cypress run --headed --browser chrome --reporter-options reportDir=cypress/reports/chrome",
+    "test:firefox": "cypress run --headed --browser firefox --reporter-options reportDir=cypress/reports/firefox",
+    "test:edge": "cypress run --headed --browser edge --reporter-options reportDir=cypress/reports/edge",
+    "test:all-browsers": "npm run test:chrome & npm run test:firefox & npm run test:edge"
   },
   "dependencies": {
     "cypress": "^16.2.0"
   },
   "allowScripts": {
     "cypress@16.2.0": true
+  },
+  "devDependencies": {
+    "cypress-mochawesome-reporter": "^5.0.0"
   }
 }
