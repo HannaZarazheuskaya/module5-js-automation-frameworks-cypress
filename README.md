@@ -72,8 +72,10 @@ Assessment criteria (pass rate is 70%):
 ```
 module5-js-automation-frameworks-cypress/
 ├── cypress          
-│   └── e2e/          tests            
-│   └── fixtures/     test data: credentials, address
+│   ├── e2e/          tests            
+│   ├── fixtures/     test data: credentials, address
+│   ├── reports/      html test reports 
+│   └── support/      reporter config
 ├── pageobjects/      page objects
 │   └── components/   page object components    
 ├── .gitignore
@@ -86,7 +88,8 @@ module5-js-automation-frameworks-cypress/
 * **components**: components: header, sidebar and product card.
 * **e2e**: test flow .
 * **fixtures**: contains user and admin credentials.
-* **cypress.config.js**: base url.
+* **cypress.config.js**: base url, reporter config.
+* **reports**: HTML reports generated after test run, docs are separated by browser (chrome, edge, firefox).
 
 
 ## Tools 
@@ -97,6 +100,7 @@ module5-js-automation-frameworks-cypress/
 * **Assertions:** Chai
 * **Selectors:** CSS/XPath selectors, `cy.get('[data-testid="value"]')`
 * **Browsers**: Google Chrome, Firefox, Microsoft Edge
+* **Reporters**: Spec reporter (built-in), HTML reporter with screenshots: `cypress-mochawesome-reporter`
 
 ## Instructions to run 
 
@@ -124,13 +128,35 @@ To run tests all browsers:
 
 To run only one file in headless, e.g. `sort.cy.js`:
 
-`npx cypress run --spec "cypress/e2e/login.cy.js"`
+`npx cypress run --spec "cypress/e2e/sort.cy.js"`
 
-**5. Run tests in a specific browser**
+**5. Run tests in a specific browser (headless mode)**
 
 To run tests in only one browser use:
+
 `npx cypress run --browser chrome`
 
 `npx cypress run --browser firefox`
 
 `npx cypress run --browser edge`
+
+**6. Run tests with both HTML and Spec reports (headed mode)**
+
+To run tests in a specific browser:
+
+`npm run test:chrome`
+
+`npm run test:firefox`
+
+`npm run test:edge`
+
+To run in all browsers (Chrome, Firefox, Edge):
+
+`npm run test:all-browsers`
+
+Please note that HTML reports are not generated when tests are run via **npx cypress open**. And **cypress/reports/** is overwritten on each new test run.
+
+## How to view HTML reports:
+
+1. Open the **cypress/reports/<browser>** folder.
+2. Double click on the **index.html** file.
